@@ -121,6 +121,7 @@ const contractsSlice = createSlice({
 			.addCase(getContractsThunk.fulfilled, (state, action) => {
 				state.status = "completed"
 				state.contracts = action.payload.data
+				state.error = null
 			})
 			.addCase(getContractsThunk.rejected, (state, action) => {
 				state.status = "rejected"
@@ -132,6 +133,7 @@ const contractsSlice = createSlice({
 			.addCase(removeContractThunk.fulfilled, (state, action) => {
 				state.status = 'completed'
 				state.contracts = state.contracts.filter(contract => contract.id !== action.payload)
+				state.error = null
 			})
 			.addCase(removeContractThunk.rejected, (state, action) => {
 				state.status = "rejected"
@@ -143,6 +145,7 @@ const contractsSlice = createSlice({
 			.addCase(createContractThunk.fulfilled, (state, action) => {
 				state.status = "completed"
 				state.contracts.push(action.payload.data)
+				state.error = null
 			})
 			.addCase(createContractThunk.rejected, (state, action) => {
 				state.status = "rejected"
@@ -154,6 +157,7 @@ const contractsSlice = createSlice({
 			.addCase(updateContractThunk.fulfilled, (state, action) => {
 				state.status = 'completed'
 				state.contracts = state.contracts.map(contract => contract.id === action.payload.data.id ? action.payload.data : contract)
+				state.error = null
 			})
 			.addCase(updateContractThunk.rejected, (state, action) => {
 				state.status = "rejected"
